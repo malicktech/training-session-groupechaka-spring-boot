@@ -7,17 +7,21 @@
 * Spring Data JPA
 
 ## Tools
-* IDE - Eclipse tools suite [https://spring.io/tools/sts/all](https://spring.io/tools/sts/all)
-* Outils de build : Maven
+* IDE : Eclipse tools suite [https://spring.io/tools/sts/all](https://spring.io/tools/sts/all)
+* Build : Maven
 
-Maven
-
-Bootstrap (UI Presentation)
 ## Session 1
 
 * Quick Start projet
 
-	https://start.spring.io/ 
+	- créer projet avec : https://start.spring.io/, télécharger le fichier zip et dézipper
+	- importer le projet maven sur votre IDE
+	- Exécuter le projet
+		- command line : ./mvnw spring-boot:run
+		- IDE : run main application class
+	- Accéder à l'app : 
+		- http://localhost:8080
+
 
 * Service Web RESTful : Hello world !
 
@@ -54,6 +58,10 @@ Get all users
 Get user from lastname
 	
 	http://localhost:8080/users-from-name/Bauer
+
+* Test : Test d'intégration basique avec un serveur en cours d'exécution
+
+	https://docs.spring.io/spring-boot/docs/current/reference/html/boot-features-testing.html
 
 ## Liens Utiles
 
