@@ -1,0 +1,44 @@
+# ===================================================================
+# Standard Spring Boot properties.
+# Full reference is available at:
+# http://docs.spring.io/spring-boot/docs/current/reference/html/common-application-properties.html
+# ===================================================================
+
+# SERVER MANAGEMENT
+server:
+    port: 8080
+
+# ACTUATOR
+management:
+    server.port: 9000
+    endpoints:
+        web:
+            exposure:
+                # expose all endpoints
+                include: "*" # info, health, configprops, env, mappings, threaddump, bean, loggers, autoconfig
+    endpoint:
+        health:
+            show-details: always
+# Spring Boot Actuator Info Endpoint Customization
+info:
+    # static properties
+    chaka-formation-spring: session 1
+    app: 
+      name: Spring Demo Application
+      description: Démo formation chaka spring
+      version: Session 1
+      java:
+        source: "@java.version@"
+        target: "@java.version@"
+    # build properties from maven
+    build:
+      groupId: "@project.groupId@"
+      artifact: "@project.artifactId@"
+      name: "@project.name@"
+      version: "@project.version@"            
+
+spring:
+    application:
+        name: chaka-demo
+    profiles:
+        active: #spring.profiles.active#
