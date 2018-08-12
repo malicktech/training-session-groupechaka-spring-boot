@@ -48,11 +48,20 @@
 		</dependency>
 		<!-- end::db[] -->
 
+		<!-- tag::monitor[] -->
+		<dependency>
+			<groupId>org.springframework.boot</groupId>
+			<artifactId>spring-boot-starter-actuator</artifactId>
+		</dependency>
+		<!-- end::monitor[] -->
+
+		<!-- test::db[] -->
 		<dependency>
 			<groupId>org.springframework.boot</groupId>
 			<artifactId>spring-boot-starter-test</artifactId>
 			<scope>test</scope>
 		</dependency>
+		<!-- test::db[] -->
 
 		<dependency>
 			<groupId>org.springframework.boot</groupId>

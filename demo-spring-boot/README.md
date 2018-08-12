@@ -63,6 +63,10 @@ Get user from lastname
 
 	https://docs.spring.io/spring-boot/docs/current/reference/html/boot-features-testing.html
 
+* Spring boot actuator : Monitoring, metrics, logs, traces
+
+	http://localhost:8080/actuator
+
 ## Liens Utiles
 
 * Application properties
