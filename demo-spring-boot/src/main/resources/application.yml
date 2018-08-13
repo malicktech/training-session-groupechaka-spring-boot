@@ -48,3 +48,9 @@ spring:
         name: chaka-demo
     profiles:
         active: #spring.profiles.active#
+# =================================================================== 
+# Application specific properties 
+# =================================================================== 
+hello: 
+    prefix : hello
+    target: default

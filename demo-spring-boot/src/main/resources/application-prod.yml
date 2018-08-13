@@ -1,11 +1,11 @@
 spring:
     profiles:
-        active: dev
+        active: prod
         include: 
     # DEVTOOLS PROPERTIES
     devtools:
         restart:
-            enabled: true
+            enabled: false
         livereload:
             enabled: false
     output:
@@ -28,3 +28,9 @@ spring:
         console:
             enabled: true
             path: /h2-console
+# =================================================================== 
+# Application specific properties 
+# =================================================================== 
+hello: 
+    prefix : hello
+    target: prod
