@@ -63,6 +63,70 @@ Get user from lastname
 
 	https://docs.spring.io/spring-boot/docs/current/reference/html/boot-features-testing.html
 
+* Spring boot actuator : Monitoring, metrics, logs, traces
+
+	http://localhost:8080/actuator
+
+enpoints
+
+	https://docs.spring.io/spring-boot/docs/current/reference/html/production-ready-endpoints.html
+
+Ajout des informations de commit Git  
+
+	https://docs.spring.io/spring-boot/docs/current/reference/html/howto-build.html#howto-build-info
+	 
+* Configuration applicative : properties
+
+run profile : https://docs.spring.io/spring-boot/docs/current-SNAPSHOT/maven-plugin/examples/run-profiles.html
+
+	mvnw spring-boot:run -Dspring-boot.run.profiles=dev
+
+
+* logging
+	
+	https://docs.spring.io/spring-boot/docs/current/reference/html/howto-logging.html 
+
+
+* Créer un fichier JAR exécutable avec Maven
+
+	./mvnw clean package
+	java -jar target/*.jar
+	
+	java -jar target/*.jar --spring.profiles.active=dev
+
+	mvnw -DskipTests
+	mvn clean install -Dmaven.test.skip=true
+
+* swagger
+ 
+	http://localhost:8080/v2/api-docs
+	http://localhost:8080/swagger-ui.html
+
+* Docker 
+
+	./mvnw install dockerfile:build
+	
+to lauch a service with docker
+
+	./mvnw package -DskipTests=true dockerfile:build
+	
+run
+
+	docker run -p 8080:8080 -e "SPRING_PROFILES_ACTIVE=dev" snecommerce/demo
+	
+push docker hub : docker login
+	
+	(snecommerce / .....)
+		
+docker push
+
+	./mvnw dockerfile:push
+	
+Docker compose
+
+	docker-compose -f docker/mysql.yml up -d
+	docker-compose -f docker/mysql.yml down
+	
 ## Liens Utiles
 
 * Application properties
@@ -73,9 +137,7 @@ Get user from lastname
 	
 	http://projects.spring.io/spring-boot/
 	
-* Docs
-
-Guide de références Spring boot
+* Guide de références Spring boot
 	
 	http://docs.spring.io/springboot/docs/current/reference/htmlsingle/
 	
