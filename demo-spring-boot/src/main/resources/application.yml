@@ -10,7 +10,12 @@ server:
 
 # ACTUATOR
 management:
-    server.port: 9000
+    server:
+      port: 9000
+    info:
+      git:
+        enabled: true
+        mode: full 
     endpoints:
         web:
             exposure:
@@ -19,9 +24,10 @@ management:
     endpoint:
         health:
             show-details: always
+     
 # Spring Boot Actuator Info Endpoint Customization
 info:
-    # static properties
+    # static properties, Custom Application Information
     chaka-formation-spring: session 1
     app: 
       name: Spring Demo Application

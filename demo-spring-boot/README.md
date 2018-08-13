@@ -67,6 +67,13 @@ Get user from lastname
 
 	http://localhost:8080/actuator
 
+enpoints
+
+	https://docs.spring.io/spring-boot/docs/current/reference/html/production-ready-endpoints.html
+
+* Configuration applicative : properties
+
+
 ## Liens Utiles
 
 * Application properties
