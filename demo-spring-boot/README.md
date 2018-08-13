@@ -91,6 +91,15 @@ run profile : https://docs.spring.io/spring-boot/docs/current-SNAPSHOT/maven-plu
 
 	./mvnw clean package
 	java -jar target/*.jar
+	
+	java -jar target/*.jar --spring.profiles.active=dev
+
+	mvnw -DskipTests
+	mvn clean install -Dmaven.test.skip=true
+
+* swagger 
+http://localhost:8080/v2/api-docs
+http://localhost:8080/swagger-ui.html
 
 ## Liens Utiles
 
