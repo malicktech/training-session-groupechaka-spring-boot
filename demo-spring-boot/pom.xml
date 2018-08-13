@@ -48,6 +48,14 @@
 			<groupId>com.h2database</groupId>
 			<artifactId>h2</artifactId>
 		</dependency>
+		<dependency>
+			<groupId>mysql</groupId>
+			<artifactId>mysql-connector-java</artifactId>
+		</dependency>
+		<dependency>
+			<groupId>com.zaxxer</groupId>
+			<artifactId>HikariCP</artifactId>
+		</dependency>
 		<!-- end::db[] -->
 
 		<!-- tag::monitor[] -->
@@ -57,13 +65,13 @@
 		</dependency>
 		<!-- end::monitor[] -->
 
-		<!-- test::db[] -->
+		<!-- test::test[] -->
 		<dependency>
 			<groupId>org.springframework.boot</groupId>
 			<artifactId>spring-boot-starter-test</artifactId>
 			<scope>test</scope>
 		</dependency>
-		<!-- test::db[] -->
+		<!-- test::test[] -->
 
 		<dependency>
 			<groupId>org.springframework.boot</groupId>

@@ -1,0 +1,14 @@
+version: '2'
+services:
+    app:
+        image: snecommerce/demo
+        environment:
+            - _JAVA_OPTIONS=-Xmx512m -Xms256m
+            - SPRING_PROFILES_ACTIVE=prod
+            - SPRING_DATASOURCE_URL=jdbc:mysql://db:3306/demo?useUnicode=true&characterEncoding=utf8&useSSL=false
+        ports:
+            - 8080:8080
+    db:
+        extends:
+            file: mysql.yml
+            service: db

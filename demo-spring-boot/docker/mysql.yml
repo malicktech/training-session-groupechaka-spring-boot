@@ -1,0 +1,15 @@
+version: '2'
+services:
+    db:
+        image: mysql:5.7.20
+        environment:
+            - MYSQL_USER=root
+            - MYSQL_ALLOW_EMPTY_PASSWORD=yes
+            - MYSQL_DATABASE=demo
+        ports:
+            - 3306:3306
+    adminer:
+        image: adminer
+        restart: always
+        ports:
+            - 8085:8080
