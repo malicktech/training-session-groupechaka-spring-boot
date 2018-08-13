@@ -39,6 +39,11 @@
 		</dependency>
 		<!-- end::web[] -->
 
+		<dependency>
+			<groupId>org.springframework.boot</groupId>
+			<artifactId>spring-boot-starter-security</artifactId>
+		</dependency>
+
 		<!-- tag::db[] -->
 		<dependency>
 			<groupId>org.springframework.boot</groupId>
