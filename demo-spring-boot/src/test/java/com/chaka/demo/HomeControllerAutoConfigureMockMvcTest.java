@@ -29,11 +29,16 @@ public class HomeControllerAutoConfigureMockMvcTest {
 
 	@Autowired
 	private MockMvc mockMvc;
+	
+	@Autowired
+	private HelloProperties helloProperties;
+
 
 	@Test
 	public void shouldReturnDefaultMessage() throws Exception {
+		String expectedResult = String.format("%s, %s!", helloProperties.getPrefix(), helloProperties.getTarget());
 		this.mockMvc.perform(get("/")).andDo(print()).andExpect(status().isOk())
-				.andExpect(content().string(containsString("Hello, default")));
+				.andExpect(content().string(containsString(expectedResult)));
 	}
 
 }

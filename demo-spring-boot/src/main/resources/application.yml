@@ -20,8 +20,8 @@ management:
         web:
             exposure:
                 # expose all endpoints
-                # include: "*" # info, health, configprops, env, mappings, threaddump, bean, loggers, autoconfig
-                include: configprops", "env", "health", "info", "threaddump"
+                include: "*" # info, health, configprops, env, mappings, threaddump, bean, loggers, autoconfig
+                # include: configprops", "env", "health", "info", "threaddump" 
     endpoint:
         health:
             show-details: always
