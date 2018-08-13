@@ -97,10 +97,36 @@ run profile : https://docs.spring.io/spring-boot/docs/current-SNAPSHOT/maven-plu
 	mvnw -DskipTests
 	mvn clean install -Dmaven.test.skip=true
 
-* swagger 
-http://localhost:8080/v2/api-docs
-http://localhost:8080/swagger-ui.html
+* swagger
+ 
+	http://localhost:8080/v2/api-docs
+	http://localhost:8080/swagger-ui.html
 
+* Docker 
+
+	./mvnw install dockerfile:build
+	
+to lauch a service with docker
+
+	./mvnw package -DskipTests=true dockerfile:build
+	
+run
+
+	docker run -p 8080:8080 -e "SPRING_PROFILES_ACTIVE=dev" snecommerce/demo
+	
+push docker hub : docker login
+	
+	(snecommerce / .....)
+		
+docker push
+
+	./mvnw dockerfile:push
+	
+Docker compose
+
+	docker-compose -f docker/mysql.yml up -d
+	docker-compose -f docker/mysql.yml down
+	
 ## Liens Utiles
 
 * Application properties
