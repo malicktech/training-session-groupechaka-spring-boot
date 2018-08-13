@@ -49,6 +49,8 @@ spring:
         name: chaka-demo
     profiles:
         active: #spring.profiles.active#
+        
+    data.rest.detection-strategy: annotated
 # =================================================================== 
 # Application specific properties 
 # =================================================================== 

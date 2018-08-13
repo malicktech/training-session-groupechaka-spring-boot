@@ -17,8 +17,8 @@ public class HomeController {
 	@Autowired
 	private HelloProperties helloProperties;
 
-	@Secured("ROLE_ADMIN")
-	@GetMapping("/")
+//	@Secured("ROLE_ADMIN")
+//	F@GetMapping("/")
 	public String Hello() {
 		return String.format("%s, %s!", helloProperties.getPrefix(), helloProperties.getTarget());
 	}
