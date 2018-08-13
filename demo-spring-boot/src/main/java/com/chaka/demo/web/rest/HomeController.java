@@ -3,6 +3,7 @@ package com.chaka.demo.web.rest;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.access.annotation.Secured;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RestController;
 
@@ -16,6 +17,7 @@ public class HomeController {
 	@Autowired
 	private HelloProperties helloProperties;
 
+	@Secured("ROLE_ADMIN")
 	@GetMapping("/")
 	public String Hello() {
 		return String.format("%s, %s!", helloProperties.getPrefix(), helloProperties.getTarget());
