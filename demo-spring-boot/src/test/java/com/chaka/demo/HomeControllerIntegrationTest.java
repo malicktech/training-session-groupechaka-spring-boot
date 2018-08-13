@@ -12,7 +12,6 @@ import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.boot.test.context.SpringBootTest.WebEnvironment;
 import org.springframework.boot.test.web.client.TestRestTemplate;
 import org.springframework.boot.web.server.LocalServerPort;
-import org.springframework.http.ResponseEntity;
 import org.springframework.test.context.junit4.SpringRunner;
 
 @RunWith(SpringRunner.class)
@@ -22,10 +21,13 @@ public class HomeControllerIntegrationTest {
 	@LocalServerPort
 	private int port;
 
-	private URL base;
-
 	@Autowired
 	private TestRestTemplate restTemplate;
+
+	@Autowired
+	private HelloProperties helloProperties;
+
+	private URL base;
 
 	@Before
 	public void setUp() throws Exception {
@@ -36,14 +38,9 @@ public class HomeControllerIntegrationTest {
 	public void testHome() throws Exception {
 		String url = "http://localhost:" + port + "/";
 		String body = this.restTemplate.getForObject(url, String.class);
-		String expectedResult = "Hello, World!";
+		String expectedResult = String.format("%s, %s!", helloProperties.getPrefix(), helloProperties.getTarget());
+		;
 		assertThat(body).isEqualTo(expectedResult);
-	}
-
-	@Test
-	public void getHello() throws Exception {
-		ResponseEntity<String> response = restTemplate.getForEntity(base.toString(), String.class);
-		assertThat(response.getBody()).isEqualTo("Hello, World!");
 	}
 
 }
