@@ -1,3 +1,11 @@
+logging:
+    level:
+        ROOT: INFO        
+        org.hibernate.SQL: ERROR
+        org.hibernate: ERROR
+        orh.springframework.web: DEBUG
+        com.zaxxer.hikari.HikariConfig: DEBUG
+        sne.chaka.demo: INFO
 spring:
     profiles:
         active: prod

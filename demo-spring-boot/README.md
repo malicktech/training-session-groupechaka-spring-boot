@@ -71,8 +71,26 @@ enpoints
 
 	https://docs.spring.io/spring-boot/docs/current/reference/html/production-ready-endpoints.html
 
+Ajout des informations de commit Git  
+
+	https://docs.spring.io/spring-boot/docs/current/reference/html/howto-build.html#howto-build-info
+	 
 * Configuration applicative : properties
 
+run profile : https://docs.spring.io/spring-boot/docs/current-SNAPSHOT/maven-plugin/examples/run-profiles.html
+
+	mvnw spring-boot:run -Dspring-boot.run.profiles=dev
+
+
+* logging
+	
+	https://docs.spring.io/spring-boot/docs/current/reference/html/howto-logging.html 
+
+
+* Créer un fichier JAR exécutable avec Maven
+
+	./mvnw clean package
+	java -jar target/*.jar
 
 ## Liens Utiles
 
@@ -84,9 +102,7 @@ enpoints
 	
 	http://projects.spring.io/spring-boot/
 	
-* Docs
-
-Guide de références Spring boot
+* Guide de références Spring boot
 	
 	http://docs.spring.io/springboot/docs/current/reference/htmlsingle/
 	
