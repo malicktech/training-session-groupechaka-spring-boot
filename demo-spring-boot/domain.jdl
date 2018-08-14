@@ -1,0 +1,23 @@
+entity BankAccount {
+	name String required
+    balance BigDecimal required
+    type BankAccountType
+}
+relationship ManyToOne {
+	BankAccount{owner} to User
+}
+enum BankAccountType {
+    CURRENT_ACCOUNT, SAVING_ACCOUNT
+}
+entity Operation {
+	date Instant required
+    description String 
+    amount BigDecimal required
+    type OperationType
+}
+enum OperationType {
+    WITHDRAWAL, DEPOSIT, TRANSFER	
+}
+relationship OneToMany {
+	BankAccount{operations} to Operation
+}
