@@ -1,19 +1,22 @@
 package com.chaka.demo.domain;
 
 import java.io.Serializable;
-import java.math.BigDecimal;
 import java.util.HashSet;
 import java.util.Set;
 
+import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
-import javax.persistence.ManyToOne;
-import javax.persistence.OneToMany;
+import javax.persistence.ManyToMany;
+import javax.persistence.Table;
+import javax.validation.constraints.NotNull;
+import javax.validation.constraints.Size;
 
 @Entity
-public class BankAccount implements Serializable {
+@Table(name = "label")
+public class Label implements Serializable {
 
 	private static final long serialVersionUID = 1L;
 
@@ -21,13 +24,13 @@ public class BankAccount implements Serializable {
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private Long id;
 
-	private BigDecimal balance;
+	@NotNull
+	@Size(min = 3)
+	@Column(name = "jhi_label", nullable = false)
+	private String label;
 
-	@OneToMany(mappedBy = "bankAccount")
+	@ManyToMany(mappedBy = "labels")
 	private Set<Operation> operations = new HashSet<>();
-
-	@ManyToOne
-	private User user;
 
 	public Long getId() {
 		return id;
@@ -37,12 +40,12 @@ public class BankAccount implements Serializable {
 		this.id = id;
 	}
 
-	public BigDecimal getBalance() {
-		return balance;
+	public String getLabel() {
+		return label;
 	}
 
-	public void setBalance(BigDecimal balance) {
-		this.balance = balance;
+	public void setLabel(String label) {
+		this.label = label;
 	}
 
 	public Set<Operation> getOperations() {
@@ -53,12 +56,8 @@ public class BankAccount implements Serializable {
 		this.operations = operations;
 	}
 
-	public User getUser() {
-		return user;
+	@Override
+	public String toString() {
+		return "Label{" + "id=" + getId() + ", label='" + getLabel() + "'" + "}";
 	}
-
-	public void setUser(User user) {
-		this.user = user;
-	}
-
 }
