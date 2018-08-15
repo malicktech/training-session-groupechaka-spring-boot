@@ -20,7 +20,12 @@ public interface OperationRepository extends JpaRepository<Operation, Long> {
     @Query(value = "select distinct operation from Operation operation left join fetch operation.labels",
         countQuery = "select count(distinct operation) from Operation operation")
     Page<Operation> findAllWithEagerRelationships(Pageable pageable);
+    
+    Page<Operation> findAll(Pageable pageable);
 
+    @EntityGraph(attributePaths = { "labels" })
+    Page<Operation> findByBankAccountUserLoginOrderByDateDesc(String userLogin, Pageable pageable);
+    
     @Query(value = "select distinct operation from Operation operation left join fetch operation.labels")
     List<Operation> findAllWithEagerRelationships();
 

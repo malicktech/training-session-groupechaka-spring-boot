@@ -80,4 +80,8 @@ public class OperationService {
         log.debug("Request to delete Operation : {}", id);
         operationRepository.deleteById(id);
     }
+
+	public Page<Operation> findByBankAccountUserLoginOrderByDateDesc(String userLogin, Pageable pageable) {
+		return operationRepository.findByBankAccountUserLoginOrderByDateDesc(userLogin, pageable);
+	}
 }

@@ -2,6 +2,7 @@ package com.chaka.jhipster.web.rest;
 
 import com.codahale.metrics.annotation.Timed;
 import com.chaka.jhipster.domain.Operation;
+import com.chaka.jhipster.security.SecurityUtils;
 import com.chaka.jhipster.service.OperationService;
 import com.chaka.jhipster.web.rest.errors.BadRequestAlertException;
 import com.chaka.jhipster.web.rest.util.HeaderUtil;
@@ -97,7 +98,7 @@ public class OperationResource {
         if (eagerload) {
             page = operationService.findAllWithEagerRelationships(pageable);
         } else {
-            page = operationService.findAll(pageable);
+            page = operationService.findByBankAccountUserLoginOrderByDateDesc(SecurityUtils.getCurrentUserLogin().get() ,pageable);
         }
         HttpHeaders headers = PaginationUtil.generatePaginationHttpHeaders(page, String.format("/api/operations?eagerload=%b", eagerload));
         return new ResponseEntity<>(page.getContent(), headers, HttpStatus.OK);
