@@ -32,7 +32,7 @@
                 <td jhiTranslate="{{'chakaJhipsterMonolithApp.OperationType.' + operation.type}}">{{operation.type}}</td>
                 <td>
                     <div *ngIf="operation.bankAccount">
-                        <a [routerLink]="['../bank-account', operation.bankAccount?.id, 'view' ]" >{{operation.bankAccount?.id}}</a>
+                        <a [routerLink]="['../bank-account', operation.bankAccount?.id, 'view' ]" >{{operation.bankAccount?.name}}</a>
                     </div>
                 </td>
                 <td class="text-right">

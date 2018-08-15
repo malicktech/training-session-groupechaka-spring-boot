@@ -3,6 +3,8 @@ import { RouterModule } from '@angular/router';
 
 import { ChakaJhipsterMonolithSharedModule } from 'app/shared';
 import { ChakaJhipsterMonolithAdminModule } from 'app/admin/admin.module';
+import { ChakaJhipsterMonolithOperationModule } from 'app/entities/operation/operation.module';
+
 import {
     BankAccountComponent,
     BankAccountDetailComponent,
@@ -16,7 +18,12 @@ import {
 const ENTITY_STATES = [...bankAccountRoute, ...bankAccountPopupRoute];
 
 @NgModule({
-    imports: [ChakaJhipsterMonolithSharedModule, ChakaJhipsterMonolithAdminModule, RouterModule.forChild(ENTITY_STATES)],
+    imports: [
+        ChakaJhipsterMonolithSharedModule,
+        ChakaJhipsterMonolithAdminModule,
+        ChakaJhipsterMonolithOperationModule,
+        RouterModule.forChild(ENTITY_STATES)
+    ],
     declarations: [
         BankAccountComponent,
         BankAccountDetailComponent,
