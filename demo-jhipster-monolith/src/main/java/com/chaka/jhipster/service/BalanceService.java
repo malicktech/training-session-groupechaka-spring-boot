@@ -30,12 +30,15 @@ public class BalanceService {
 
 	public Operation add(@Valid Operation operation) {
 		Operation operationSaved = operationRepository.save(operation);
-		BankAccount bankAccount = bankAccountRepository.findById(operation.getBankAccount().getId()).get();
-		if (operation.getType().equals(OperationType.DEPOSIT))
-		bankAccount.setBalance(bankAccount.getBalance().add(operation.getAmount()));
-		else 
-			bankAccount.setBalance(bankAccount.getBalance().subtract(operation.getAmount()));
-			
+
+		bankAccountRepository.findById(operation.getBankAccount().getId()).map(bankAccount -> {
+			if (operation.getType().equals(OperationType.DEPOSIT))
+				bankAccount.setBalance(bankAccount.getBalance().add(operation.getAmount()));
+			else
+				bankAccount.setBalance(bankAccount.getBalance().subtract(operation.getAmount()));
+			return bankAccount;
+		});
+
 		return operationSaved;
 	}
 
