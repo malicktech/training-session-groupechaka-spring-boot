@@ -4,7 +4,7 @@ entity BankAccount {
     type BankAccountType
 }
 relationship ManyToOne {
-	BankAccount{owner} to User
+	BankAccount{user(login)} to User
 }
 enum BankAccountType {
     CURRENT_ACCOUNT, SAVING_ACCOUNT
@@ -21,3 +21,13 @@ enum OperationType {
 relationship OneToMany {
 	BankAccount{operations} to Operation
 }
+entity Label {
+	label String 
+}
+relationship ManyToMany {
+	Operation{labels} to Label{operations}
+}
+paginate BankAccount with pagination
+paginate Operation with infinite-scroll
+service BankAccount, Operation with serviceClass
+//filter BankAccount
