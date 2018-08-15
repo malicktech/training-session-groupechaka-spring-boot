@@ -3,6 +3,7 @@ package com.chaka.jhipster.web.rest;
 import com.codahale.metrics.annotation.Timed;
 import com.chaka.jhipster.domain.Operation;
 import com.chaka.jhipster.security.SecurityUtils;
+import com.chaka.jhipster.service.BalanceService;
 import com.chaka.jhipster.service.OperationService;
 import com.chaka.jhipster.web.rest.errors.BadRequestAlertException;
 import com.chaka.jhipster.web.rest.util.HeaderUtil;
@@ -37,8 +38,11 @@ public class OperationResource {
 
     private final OperationService operationService;
 
-    public OperationResource(OperationService operationService) {
+    private final BalanceService balanceService;
+    
+    public OperationResource(OperationService operationService, BalanceService balanceService) {
         this.operationService = operationService;
+        this.balanceService = balanceService;
     }
 
     /**
@@ -55,7 +59,7 @@ public class OperationResource {
         if (operation.getId() != null) {
             throw new BadRequestAlertException("A new operation cannot already have an ID", ENTITY_NAME, "idexists");
         }
-        Operation result = operationService.save(operation);
+        Operation result = balanceService.add(operation);
         return ResponseEntity.created(new URI("/api/operations/" + result.getId()))
             .headers(HeaderUtil.createEntityCreationAlert(ENTITY_NAME, result.getId().toString()))
             .body(result);

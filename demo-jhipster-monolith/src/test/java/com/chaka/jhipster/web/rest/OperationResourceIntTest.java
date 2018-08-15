@@ -4,6 +4,7 @@ import com.chaka.jhipster.ChakaJhipsterMonolithApp;
 
 import com.chaka.jhipster.domain.Operation;
 import com.chaka.jhipster.repository.OperationRepository;
+import com.chaka.jhipster.service.BalanceService;
 import com.chaka.jhipster.service.OperationService;
 import com.chaka.jhipster.web.rest.errors.ExceptionTranslator;
 
@@ -71,6 +72,12 @@ public class OperationResourceIntTest {
 
     @Autowired
     private OperationService operationService;
+    
+    @Mock
+    private BalanceService balanceServiceMock;
+    
+    @Autowired
+    private BalanceService balanceService;
 
     @Autowired
     private MappingJackson2HttpMessageConverter jacksonMessageConverter;
@@ -91,7 +98,7 @@ public class OperationResourceIntTest {
     @Before
     public void setup() {
         MockitoAnnotations.initMocks(this);
-        final OperationResource operationResource = new OperationResource(operationService);
+        final OperationResource operationResource = new OperationResource(operationService, balanceService);
         this.restOperationMockMvc = MockMvcBuilders.standaloneSetup(operationResource)
             .setCustomArgumentResolvers(pageableArgumentResolver)
             .setControllerAdvice(exceptionTranslator)
@@ -213,7 +220,7 @@ public class OperationResourceIntTest {
     }
     
     public void getAllOperationsWithEagerRelationshipsIsEnabled() throws Exception {
-        OperationResource operationResource = new OperationResource(operationServiceMock);
+        OperationResource operationResource = new OperationResource(operationServiceMock, balanceServiceMock);
         when(operationServiceMock.findAllWithEagerRelationships(any())).thenReturn(new PageImpl(new ArrayList<>()));
 
         MockMvc restOperationMockMvc = MockMvcBuilders.standaloneSetup(operationResource)
@@ -229,7 +236,7 @@ public class OperationResourceIntTest {
     }
 
     public void getAllOperationsWithEagerRelationshipsIsNotEnabled() throws Exception {
-        OperationResource operationResource = new OperationResource(operationServiceMock);
+        OperationResource operationResource = new OperationResource(operationServiceMock, balanceServiceMock);
             when(operationServiceMock.findAllWithEagerRelationships(any())).thenReturn(new PageImpl(new ArrayList<>()));
             MockMvc restOperationMockMvc = MockMvcBuilders.standaloneSetup(operationResource)
             .setCustomArgumentResolvers(pageableArgumentResolver)
