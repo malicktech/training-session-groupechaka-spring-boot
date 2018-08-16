@@ -19,6 +19,7 @@ import java.util.Locale;
 import java.util.Objects;
 import java.util.Set;
 import java.time.Instant;
+import java.time.LocalDate;
 
 /**
  * A user.
@@ -53,6 +54,9 @@ public class User extends AbstractAuditingEntity implements Serializable {
     @Size(max = 50)
     @Column(name = "last_name", length = 50)
     private String lastName;
+    
+    @Column(name = "birth_date")
+    private LocalDate birthDate;
 
     @Email
     @Size(min = 5, max = 254)
@@ -106,7 +110,15 @@ public class User extends AbstractAuditingEntity implements Serializable {
         return login;
     }
 
-    // Lowercase the login before saving it in database
+    public LocalDate getBirthDate() {
+		return birthDate;
+	}
+
+	public void setBirthDate(LocalDate birthDate) {
+		this.birthDate = birthDate;
+	}
+
+	// Lowercase the login before saving it in database
     public void setLogin(String login) {
         this.login = StringUtils.lowerCase(login, Locale.ENGLISH);
     }

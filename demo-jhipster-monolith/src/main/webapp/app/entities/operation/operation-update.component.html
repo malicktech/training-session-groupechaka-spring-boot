@@ -59,13 +59,13 @@
                     <label class="form-control-label" jhiTranslate="chakaJhipsterMonolithApp.operation.bankAccount" for="field_bankAccount">Bank Account</label>
                     <select class="form-control" id="field_bankAccount" name="bankAccount" [(ngModel)]="operation.bankAccount" >
                         <option [ngValue]="null"></option>
-                        <option [ngValue]="bankAccountOption.id === operation.bankAccount?.id ? operation.bankAccount : bankAccountOption" *ngFor="let bankAccountOption of bankaccounts; trackBy: trackBankAccountById">{{bankAccountOption.id}}</option>
+                        <option [ngValue]="bankAccountOption.id === operation.bankAccount?.id ? operation.bankAccount : bankAccountOption" *ngFor="let bankAccountOption of bankaccounts; trackBy: trackBankAccountById">{{bankAccountOption.name}}</option>
                     </select>
                 </div>
                 <div class="form-group">
                     <label jhiTranslate="chakaJhipsterMonolithApp.operation.labels" for="field_labels">Labels</label>
                     <select class="form-control" id="field_labels" multiple name="labels" [(ngModel)]="operation.labels">
-                        <option [ngValue]="getSelected(operation.labels, labelOption)" *ngFor="let labelOption of labels; trackBy: trackLabelById">{{labelOption.id}}</option>
+                        <option [ngValue]="getSelected(operation.labels, labelOption)" *ngFor="let labelOption of labels; trackBy: trackLabelById">{{labelOption.label}}</option>
                     </select>
                 </div>
             </div>

@@ -16,6 +16,7 @@ const ENTITY_STATES = [...operationRoute, ...operationPopupRoute];
 
 @NgModule({
     imports: [ChakaJhipsterMonolithSharedModule, RouterModule.forChild(ENTITY_STATES)],
+    exports: [OperationComponent],
     declarations: [
         OperationComponent,
         OperationDetailComponent,
