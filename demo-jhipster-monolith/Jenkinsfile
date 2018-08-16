@@ -42,6 +42,10 @@ node {
                 junit '**/target/test-results/jest/TESTS-*.xml'
             }
         }
+        
+        stage('Directory Permission') {
+		    sh "chmod 777 -R target"
+        }
 
         stage('packaging') {
             sh "./mvnw verify -Pprod -DskipTests"

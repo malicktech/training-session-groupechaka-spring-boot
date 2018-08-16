@@ -33,6 +33,7 @@
     "languages": [
       "fr",
       "en"
-    ]
+    ],
+    "enableRancherLoadBalancing": true
   }
 }
