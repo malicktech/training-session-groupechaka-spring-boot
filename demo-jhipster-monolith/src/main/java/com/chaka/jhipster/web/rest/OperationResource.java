@@ -6,6 +6,7 @@ import com.chaka.jhipster.security.SecurityUtils;
 import com.chaka.jhipster.service.BalanceService;
 import com.chaka.jhipster.service.OperationService;
 import com.chaka.jhipster.web.rest.errors.BadRequestAlertException;
+import com.chaka.jhipster.web.rest.errors.InternalServerErrorException;
 import com.chaka.jhipster.web.rest.util.HeaderUtil;
 import com.chaka.jhipster.web.rest.util.PaginationUtil;
 import io.github.jhipster.web.util.ResponseUtil;
@@ -99,10 +100,11 @@ public class OperationResource {
     public ResponseEntity<List<Operation>> getAllOperations(Pageable pageable, @RequestParam(required = false, defaultValue = "false") boolean eagerload) {
         log.debug("REST request to get a page of Operations");
         Page<Operation> page;
+        final String userLogin = SecurityUtils.getCurrentUserLogin().orElseThrow(() -> new InternalServerErrorException("Current user login not found"));
         if (eagerload) {
             page = operationService.findAllWithEagerRelationships(pageable);
         } else {
-            page = operationService.findByBankAccountUserLoginOrderByDateDesc(SecurityUtils.getCurrentUserLogin().get() ,pageable);
+            page = operationService.findByBankAccountUserLoginOrderByDateDesc(userLogin ,pageable);
         }
         HttpHeaders headers = PaginationUtil.generatePaginationHttpHeaders(page, String.format("/api/operations?eagerload=%b", eagerload));
         return new ResponseEntity<>(page.getContent(), headers, HttpStatus.OK);
