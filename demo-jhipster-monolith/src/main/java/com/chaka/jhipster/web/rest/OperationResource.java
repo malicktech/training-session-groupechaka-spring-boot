@@ -100,11 +100,10 @@ public class OperationResource {
     public ResponseEntity<List<Operation>> getAllOperations(Pageable pageable, @RequestParam(required = false, defaultValue = "false") boolean eagerload) {
         log.debug("REST request to get a page of Operations");
         Page<Operation> page;
-        final String userLogin = SecurityUtils.getCurrentUserLogin().orElseThrow(() -> new InternalServerErrorException("Current user login not found"));
         if (eagerload) {
             page = operationService.findAllWithEagerRelationships(pageable);
         } else {
-            page = operationService.findByBankAccountUserLoginOrderByDateDesc(userLogin ,pageable);
+            page = operationService.findByBankAccountUserLoginOrderByDateDesc(pageable);
         }
         HttpHeaders headers = PaginationUtil.generatePaginationHttpHeaders(page, String.format("/api/operations?eagerload=%b", eagerload));
         return new ResponseEntity<>(page.getContent(), headers, HttpStatus.OK);

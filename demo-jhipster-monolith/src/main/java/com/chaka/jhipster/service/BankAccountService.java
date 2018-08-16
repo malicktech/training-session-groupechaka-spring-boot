@@ -2,6 +2,9 @@ package com.chaka.jhipster.service;
 
 import com.chaka.jhipster.domain.BankAccount;
 import com.chaka.jhipster.repository.BankAccountRepository;
+import com.chaka.jhipster.security.AuthoritiesConstants;
+import com.chaka.jhipster.security.SecurityUtils;
+
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
@@ -49,13 +52,12 @@ public class BankAccountService {
 	@Transactional(readOnly = true)
 	public Page<BankAccount> findAll(Pageable pageable) {
 		log.debug("Request to get all BankAccounts");
-		return bankAccountRepository.findAll(pageable);
-	}
-
-	@Transactional(readOnly = true)
-	public Page<BankAccount> findAllUserBankAccount(Pageable pageable) {
-		log.debug("Request to get all the user's BankAccounts");
-		return bankAccountRepository.findByUserIsCurrentUser(pageable);
+		Page<BankAccount> page;
+		if (SecurityUtils.isCurrentUserInRole(AuthoritiesConstants.ADMIN))
+			page = bankAccountRepository.findAll(pageable);
+		else
+			page = bankAccountRepository.findByUserIsCurrentUser(pageable);
+		return page;
 	}
 
 	/**

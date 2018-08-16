@@ -102,15 +102,8 @@ public class BankAccountResource {
     @GetMapping("/bank-accounts")
     @Timed
     public ResponseEntity<List<BankAccount>> getAllBankAccounts(Pageable pageable) {
-        log.debug("REST request to get a page of BankAccounts");
-        
-		Page<BankAccount> page;
-
-		if (SecurityUtils.isCurrentUserInRole(AuthoritiesConstants.ADMIN))
-			page = bankAccountService.findAll(pageable);
-		else
-			page = bankAccountService.findAllUserBankAccount(pageable);
-		
+        log.debug("REST request to get a page of BankAccounts");       
+		Page<BankAccount> page = bankAccountService.findAll(pageable);		
         HttpHeaders headers = PaginationUtil.generatePaginationHttpHeaders(page, "/api/bank-accounts");
         return new ResponseEntity<>(page.getContent(), headers, HttpStatus.OK);
     }

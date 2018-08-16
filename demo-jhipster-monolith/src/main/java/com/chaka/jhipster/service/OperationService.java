@@ -2,6 +2,9 @@ package com.chaka.jhipster.service;
 
 import com.chaka.jhipster.domain.Operation;
 import com.chaka.jhipster.repository.OperationRepository;
+import com.chaka.jhipster.security.SecurityUtils;
+import com.chaka.jhipster.web.rest.errors.InternalServerErrorException;
+
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
@@ -81,7 +84,8 @@ public class OperationService {
         operationRepository.deleteById(id);
     }
 
-	public Page<Operation> findByBankAccountUserLoginOrderByDateDesc(String userLogin, Pageable pageable) {
+	public Page<Operation> findByBankAccountUserLoginOrderByDateDesc(Pageable pageable) {
+        final String userLogin = SecurityUtils.getCurrentUserLogin().orElseThrow(() -> new InternalServerErrorException("Current user login not found"));
 		return operationRepository.findByBankAccountUserLoginOrderByDateDesc(userLogin, pageable);
 	}
 }
