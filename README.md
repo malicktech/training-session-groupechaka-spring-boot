@@ -5,7 +5,14 @@
 * [Session 2 - Démo jhipster monolith](/#) [TODO]
 * [Session 3 - Démo jhipster microservice](/#) [TODO]
 
-# Blog de référence
+## TODO
+
+- [ ] Upgrade spring boot
+- [ ] Upgrade from swagger 2 to open api 3
+- [ ] Upgrade java 11
+- [ ] delete jhispter subrepo - keep only spring boot
+
+## Blog de référence
 
 * https://dzone.com/
 
